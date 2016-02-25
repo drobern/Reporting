@@ -1,0 +1,283 @@
+doctype html
+html
+  head
+  script(src="https://www.google.com/jsapi")
+  script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css")
+  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+  meta(name='description', content='Benbria TEAM')
+  script.
+    
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {'packages':['table', 'corechart']});
+      
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawTable);
+    google.setOnLoadCallback(drawChart);
+    google.setOnLoadCallback(drawPie);
+    google.setOnLoadCallback(drawLine);
+      
+    function drawTable() {
+      var gd = !{JSON.stringify(gd)};
+      console.log(gd); 
+
+      var chart = new google.visualization.DataTable(gd); 
+      
+      if (gd) {
+        var table = new google.visualization.Table(document.getElementById('chart_div'));
+        table.draw(chart, {showRowNumber: false, width: '100%', page:'enable', pageSize: 10, sortColumn: 0, sortAscending: true});
+        var width = "195px";
+      }
+    }
+    
+    function drawChart() {
+
+      var cd = !{JSON.stringify(cd)};
+      console.log(cd); 
+
+      var chart = new google.visualization.DataTable(cd);
+
+      var options = {
+        title: 'Overall Balances',
+        hAxis: {
+          viewWindow: {
+            min: [7, 30, 0],
+            max: [17, 30, 0]
+          }
+        },
+        vAxis: {
+          title: 'Amount (listed in $)'
+        }
+      };
+      
+      if (cd) {
+        var table = new google.visualization.ColumnChart(document.getElementById('column_div'));
+        table.draw(chart, options);
+      }
+
+    }
+
+    function drawPie() {
+
+      var pd = !{JSON.stringify(pd)};
+      console.log(pd); 
+
+      var chart = new google.visualization.DataTable(pd);
+
+      var options = {
+                  title: 'Balance Distribution',
+      };
+      
+      if (pd) {
+        var table = new google.visualization.PieChart(document.getElementById('pie_div'));
+        table.draw(chart, options);
+      }
+
+    }
+
+    function drawLine() {
+
+      var ld = !{JSON.stringify(ld)};
+      console.log(ld); 
+
+      var chart = new google.visualization.DataTable(ld);
+
+      var options = {
+                  title: 'Balance Comparisons',
+      };
+      
+      if (ld) {
+        var table = new google.visualization.LineChart(document.getElementById('line_div'));
+        table.draw(chart, options);
+      }
+
+    }
+
+     $(window).resize(function(){
+      drawTable();
+      drawChart();
+      drawPie();
+      drawLine();
+    });
+    
+    console.log("THE MONTH: "+!{month});
+    console.log("THE YEAR: "+!{year});
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="navbar-collapse" aria-expanded="false" aria-controls="navbar")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="#") BENBRIATEAM.DAVE
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href="index") Dashboard
+            li
+              a(href="profile?month="+month) Profiles
+            li.active
+              a(href="#") Payments
+            li
+              a(href="#helpModal" data-toggle="modal") Help
+          //form.navbar-form.navbar-right
+            //input.form-control(type="text" placeholder="Search...")
+          form.navbar-form.navbar-right.form-inline(action="index" method="get")
+            .form-group
+              label Name
+              &#32;
+              select(id="name", name="name")
+                option(value="All" selected) Please Select
+                option(value="Dave") Dave
+                option(value="Wojtek") Wojtek
+                option(value="Peter") Peter
+                option(value="Calvin") Calvin
+            .form-group
+              &nbsp
+              label Month
+              &#32;
+              select(id="month", name="month")
+                - if (month == "01")
+                    option(value="January" selected) January
+                - else
+                    option(value="January") January 
+                - if (month == "02")
+                    option(value="February" selected) February
+                - else
+                    option(value="February") February
+                - if (month == "03")
+                    option(value="March" selected) March
+                - else
+                    option(value="March") March
+                - if (month == "04")
+                    option(value="April" selected) April
+                - else
+                    option(value="April") April
+                - if (month == "05")
+                    option(value="May" selected) May
+                - else
+                    option(value="May") May
+                - if(month == "06")
+                    option(value="June" selected) June
+                - else
+                    option(value="June") June
+                - if (month == "07")
+                    option(value="July" selected) July
+                - else
+                    option(value="July") July
+                - if(month == "08")
+                    option(value="August" selected) August
+                - else
+                    option(value="August") August
+                - if(month == "09")
+                    option(value="September" selected) September
+                - else
+                    option(value="September") September
+                - if(month == "10")
+                    option(value="October" selected) October
+                - else
+                    option(value="October") October
+                - if(month == "11")    
+                    option(value="November" selected) November
+                - else
+                    option(value="November") November
+                - if(month == "12")
+                    option(value="December" selected) December
+                - else
+                    option(value="December") December
+            .form-group
+              &nbsp
+              label Year
+              &#32;
+              select(id="year", name="year")
+                option(value="2015") 2015
+                option(value="2016" selected) 2016
+            &#32;
+            button.btn.btn-primary(type="submit") Submit
+    .row-offcanvas.row-offcanvas-left
+      .sidebar-offcanvas(id="sidebar")
+        .col-md-12
+          h3 Menu
+          ul.nav.nav-pills.nav-stacked
+            li
+              a(href="index") 
+                span.glyphicon.glyphicon-home  Dashboard
+            li
+              a(href="profile?month="+month) 
+                span.glyphicon.glyphicon-user  Profiles
+            li
+              a.active(href="#helpModal" data-toggle="modal") 
+                span.glyphicon.glyphicon-bitcoin  Payments
+            li
+              a(href="#helpModal" data-toggle="modal")
+                span.glyphicon.glyphicon-question-sign  Help
+      .main    
+        .col-md-10
+          p
+            .visible-xs
+              .button.btn.btn-primary.btn-xs(type="button" data-toggle="offcanvas")
+                i.glyphicon.glyphicon-chevron-left
+          h2 Dashboard 
+            form.navbar-form.navbar-right.form-inline(action="payment" method="get")
+              .form-group
+                select(id="year", name="year")
+                  - if(year == "2015")
+                      option(value="2015" selected) 2015
+                  - else 
+                      option(value="2015") 2015
+                  - if(year == "2016")
+                      option(value="2016" selected) 2016
+                  - else
+                      option(value="2016") 2016
+                &#32;
+                button.btn.btn-primary(type="submit") Submit
+          .row
+            .col-md-4
+              .well.well-lg 
+                h4 Balances
+                div#column_div
+            .col-md-4
+              .well.well-lg 
+                h4 Proportions
+                div#pie_div
+            .col-md-4
+              .well.well-lg  
+                h4 Distribution
+                div#line_div
+            .col-md-12
+                h2.sub-header Balance Chart
+            .col-md-12
+              div#chart_div
+
+    div(id="helpModal" class="modal fade in")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            .button.close(data-dismiss="modal" aria-hidden="true") X
+            .modal-title 
+              center 
+                strong BENBRIATEAM HELP
+          .modal-body
+              span#dunce
+              p If you are here you are in BIG TROUBLE
+              p GO AWAY!
+          .modal-footer
+              button.btn.btn-primary(data-dismiss="modal" aria-hidden="true") Close
+  script.
+    $(document).ready(function() {
+      $('[data-toggle=offcanvas]').click(function() {
+        $('.row-offcanvas').toggleClass('active');
+      });
+    });
+    
+    
+   
+      
+
+      
+    
+      
+

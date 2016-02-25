@@ -1,0 +1,21 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "mysql":"*",
+    "express": "*",
+    "jade": "*",
+    "stylus": "*",
+    "nodemon": "*",
+    "moment":"*",
+    "node-zendesk": "*",
+    "nodemailer":"*",
+    "serve-favicon":"*",
+    "request":"*",
+    "password-generator":"*"
+   }
+}

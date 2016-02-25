@@ -1,0 +1,242 @@
+doctype html
+html
+  head
+  script(src="https://www.google.com/jsapi")
+  script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css")
+  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+  meta(name='description', content='Benbria TEAM')
+  script.
+    console.log("THE DATE: "+!{month});
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="navbar-collapse" aria-expanded="false" aria-controls="navbar")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="#") BENBRIATEAM.DAVE
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href="index") Dashboard
+            li.active
+              a(href="#") Profiles
+            li
+              a(href="payment?month="+month) Payments
+            li
+              a(href="#helpModal" data-toggle="modal") Help
+          //form.navbar-form.navbar-right
+            //input.form-control(type="text" placeholder="Search...")
+          form.navbar-form.navbar-right.form-inline(action="index" method="get")
+            .form-group
+              label Name 
+              &nbsp
+              select(id="name", name="name")
+                option(value="All" selected) Please Select
+                option(value="Dave") Dave
+                option(value="Wojtek") Wojtek
+                option(value="Peter") Peter
+                option(value="Calvin") Calvin
+            .form-group
+              &nbsp
+              label Month
+              &nbsp
+              select(id="month", name="month")
+                - if (month == "01")
+                    option(value="January" selected) January
+                - else
+                    option(value="January") January 
+                - if (month == "02")
+                    option(value="February" selected) February
+                - else
+                    option(value="February") February
+                - if (month == "03")
+                    option(value="March" selected) March
+                - else
+                    option(value="March") March
+                - if (month == "04")
+                    option(value="April" selected) April
+                - else
+                    option(value="April") April
+                - if (month == "05")
+                    option(value="May" selected) May
+                - else
+                    option(value="May") May
+                - if(month == "06")
+                    option(value="June" selected) June
+                - else
+                    option(value="June") June
+                - if (month == "07")
+                    option(value="July" selected) July
+                - else
+                    option(value="July") July
+                - if(month == "08")
+                    option(value="August" selected) August
+                - else
+                    option(value="August") August
+                - if(month == "09")
+                    option(value="September" selected) September
+                - else
+                    option(value="September") September
+                - if(month == "10")
+                    option(value="October" selected) October
+                - else
+                    option(value="October") October
+                - if(month == "11")    
+                    option(value="November" selected) November
+                - else
+                    option(value="November") November
+                - if(month == "12")
+                    option(value="December" selected) December
+                - else
+                    option(value="December") December
+            .form-group
+              &nbsp
+              label Year
+              &nbsp
+              select(id="year", name="year")
+                option(value="2015") 2015
+                option(value="2016" selected) 2016
+            &#32;
+            button.btn.btn-primary(type="submit") Submit
+    .row-offcanvas.row-offcanvas-left
+      .sidebar-offcanvas(id="sidebar")
+        .col-md-12
+          h3 Menu
+          ul.nav.nav-pills.nav-stacked
+            li
+              a(href="index") 
+                span.glyphicon.glyphicon-home  Dashboard
+            li
+              a.active(href="#") 
+                span.glyphicon.glyphicon-user  Profiles
+            li
+              a(href="payment?month="+month) 
+                span.glyphicon.glyphicon-bitcoin  Payments
+            li
+              a(href="#helpModal" data-toggle="modal")
+                span.glyphicon.glyphicon-question-sign  Help
+      .main    
+        .col-md-10
+          p
+            .visible-xs
+              .button.btn.btn-primary.btn-xs(type="button" data-toggle="offcanvas")
+                i.glyphicon.glyphicon-chevron-left
+          
+          .container-fluid
+            .row
+              .col-md-4
+                h2 User Shares
+              .col-md-5
+                h2 Power Supply Draw
+              .col-md-4
+                table.table.table-striped
+                  tr 
+                    th Name
+                    th Share
+                  tr
+                    td Dave
+                    td %29.785
+                  tr
+                    td Wojtek
+                    td %45.029
+                  tr
+                    td Peter
+                    td %12.593
+                  tr
+                    td Calvin
+                    td %12.593
+              .col-md-4
+                table.table.table-striped
+                  tr 
+                    th Watts(W)
+                    th Kilowatts (KW)
+                  tr
+                    td 1585
+                    td 1.585
+            .row
+              h2 Seasonal Breakdown
+              .col-md-9
+                table.table.table-striped
+                  tr 
+                    th Electricity
+                    th Price (¢/kWh)
+                    th Weekdays
+                    th Weekends/Holidays
+                  tr
+                    td(colspan="4") Winter (Nov 1, 2014 - Apr 30, 2015)
+                  tr
+                    td
+                      img(src="images/chart_green.jpg")
+                      span   Off-Peak
+                    td 7.70¢
+                    td 12:00 AM-07:00 AM, 07:00 PM-12:00 AM
+                    td All Day
+                  tr
+                    td 
+                      img(src="images/chart_yellow.jpg") 
+                      span   Mid-Peak
+                    td 11.40¢
+                    td 11:00 AM-05:00 PM
+                    td Not Applicable
+                  tr
+                    td
+                      img(src="images/chart_red.jpg")
+                      span   On-Peak
+                    td 14.00¢
+                    td 07:00 AM-11:00 AM, 05:00 PM-07:00 PM
+                    td Not Applicable
+                  tr
+                    td(colspan="4") Summer (May 1, 2015 - Oct 31, 2015)
+                  tr
+                    td 
+                      img(src="images/chart_green.jpg")
+                      span   Off-Peak
+                    td 8.00¢
+                    td 12:00 AM-07:00 AM, 07:00 PM-12:00 AM
+                    td All Day
+                  tr
+                    td  
+                      img(src="images/chart_yellow.jpg") 
+                      span   Mid-Peak
+                    td 12.20¢
+                    td 07:00 AM-11:00 AM, 05:00 PM-07:00 PM
+                    td Not Applicable
+                  tr
+                    td
+                      img(src="images/chart_red.jpg")
+                      span   On-Peak    
+                    td 16.10¢
+                    td 11:00 AM-05:00 PM
+                    td Not Applicable
+    div(id="helpModal" class="modal fade in")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            .button.close(data-dismiss="modal" aria-hidden="true") X
+            .modal-title 
+              center 
+                strong BENBRIATEAM HELP
+          .modal-body
+              span#dunce
+              p If you are here you are in BIG TROUBLE
+              p GO AWAY!
+          .modal-footer
+              button.btn.btn-primary(data-dismiss="modal" aria-hidden="true") Close
+  script.
+    $(document).ready(function() {
+      $('[data-toggle=offcanvas]').click(function() {
+        $('.row-offcanvas').toggleClass('active');
+      });
+    });
+    
+      
+
+      
+    
+      
+

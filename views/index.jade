@@ -1,0 +1,291 @@
+doctype html
+html
+  head
+  // script(src="https://www.google.com/jsapi")
+  script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
+  script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous")
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous")
+  link(rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")
+  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous")
+  script(src="//code.jquery.com/jquery-1.10.2.js")
+  script(src="//code.jquery.com/ui/1.11.4/jquery-ui.js")
+  meta(name='description', content='OPS TEAM')
+  script.
+
+    var gd = !{JSON.stringify(gd)};
+    console.log(gd); 
+
+    var cd = !{JSON.stringify(cd)};
+    console.log(cd);
+
+    var td = !{JSON.stringify(td)};
+    console.log(td);
+
+    var pd = !{JSON.stringify(pd)};
+    console.log(pd);
+
+    var orgs = !{JSON.stringify(names)};
+    console.log(orgs);
+     
+    // Load the Visualization API and the piechart package.
+    google.charts.load('current', {'packages':['table', 'corechart']});
+    google.charts.setOnLoadCallback(drawTable);
+    google.charts.setOnLoadCallback(drawPie);
+    google.charts.setOnLoadCallback(drawPieT);
+    google.charts.setOnLoadCallback(drawPieP);
+    google.charts.setOnLoadCallback(drawTableC);
+    google.charts.setOnLoadCallback(drawTableT);
+    google.charts.setOnLoadCallback(drawTableP);
+
+      
+    function drawTable() {
+      var chart = new google.visualization.DataTable(gd); 
+      
+      if (gd) {
+        var table = new google.visualization.Table(document.getElementById('chart_div'));
+        table.draw(chart, {showRowNumber: false, width: '100%', page:'enable', pageSize: 10, sortColumn: 0, sortAscending: false});
+      }
+    }
+
+    function drawTableC() {
+      var chart = new google.visualization.DataTable(cd);
+
+      var table = new google.visualization.Table(document.getElementById('chartC_div'));
+      var formatter = new google.visualization.ColorFormat();
+      
+      formatter.addGradientRange(0,90,"white","lightgrey","red");
+      formatter.format(chart, 1);
+      table.draw(chart, {allowHtml: true, showRowNumber: false, width: '100%', page:'enable', pageSize: 5, sortColumn: 1, sortAscending: false});
+    }
+
+    function drawTableT() {
+      var chart = new google.visualization.DataTable(td); 
+      
+      if (td) {
+        var table = new google.visualization.Table(document.getElementById('chartT_div'));
+        table.draw(chart, {allowHtml: true, showRowNumber: false, width: '100%', sortColumn: 1, sortAscending: false});
+      }
+    }
+
+    function drawTableP() {
+      var chart = new google.visualization.DataTable(pd); 
+      
+      if (pd) {
+        var table = new google.visualization.Table(document.getElementById('chartP_div'));
+        table.draw(chart, {allowHtml: true, showRowNumber: false, width: '100%', sortColumn: 1, sortAscending: false});
+      }
+    }
+
+    function drawPie() {
+
+      var pd = !{JSON.stringify(cd)};
+      console.log(cd); 
+
+      var chart = new google.visualization.DataTable(pd);
+
+      var options = {
+                  title: 'Category Distribution',
+                  is3D: true,
+      };
+      
+      if (pd) {
+        var table = new google.visualization.PieChart(document.getElementById('pie_div'));
+        table.draw(chart, options);
+      }
+
+    }
+
+    function drawPieT() {
+
+      var pt = !{JSON.stringify(pt)};
+      console.log(pt); 
+
+      var chart = new google.visualization.DataTable(pt);
+
+      var options = {
+                  title: 'Ticket by Types',
+                  is3D: true,
+                  width: '500px',
+                  height: '700px',
+                  sortColumn: 1, 
+                  sortAscending: false,
+      };
+      
+      if (pt) {
+        var table = new google.visualization.PieChart(document.getElementById('pieT_div'));
+        table.draw(chart, options);
+      }
+
+    }
+
+    function drawPieP() {
+
+      var pp = !{JSON.stringify(pp)};
+      console.log(pp); 
+
+      var chart = new google.visualization.DataTable(pp);
+
+      var options = {
+                  title: 'Ticket by Priority',
+                  is3D: true,
+                  width: '500px',
+                  height: '700px',
+                  sortColumn: 1, 
+                  sortAscending: false,
+      };
+      
+      if (pp) {
+        var table = new google.visualization.PieChart(document.getElementById('pieP_div'));
+        table.draw(chart, options);
+      }
+
+    }
+    
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="navbar-collapse" aria-expanded="false" aria-controls="navbar")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="#") Ticket Reporting
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+          form.navbar-form.navbar-right.form-inline(action="index" method="get")
+            .form-group(class="dropdown")
+              label Select Organization
+              &nbsp
+              select(id="myOrgs",name="org")
+                - for (var x in names)
+                  - if(x == org)
+                    option(selected="selected" value="#{x}") #{x}
+                  - else
+                    option(value="#{x}") #{x}
+            .form-group
+              &nbsp
+              label Start Date
+              &#32;
+              input(type="text" id="from" name="df" size="20")
+              &nbsp
+              label End Date
+              &#32;
+              input(type="text" id="to" name="dt" size="20")
+            &#32;
+            button.btn.btn-primary(type="submit") Submit
+    .main    
+        .col-md-12
+          p
+            .visible-xs
+              .button.btn.btn-primary.btn-xs(type="button" data-toggle="offcanvas")
+                i.glyphicon.glyphicon-chevron-left
+          h2 Dashboard
+          .row
+            div(align="center")
+              .col-md-12
+                strong
+                  table.table.table-striped
+                    tr
+                      td(width="10%")  All Tickets
+                      td(width="5%") 
+                        blink 
+                          font(color="red") #{tickets}
+                      td(width="10%")  Open Tickets
+                      td(width="5%") 
+                        blink 
+                          font(color="red") #{open}
+                      td(width="10%") Closed tickets
+                      td(widt="5%") 
+                        blink 
+                          font(color="red") #{closed}
+                      td(width="15%") Average Time to Close 
+                      td(widt="5%") 
+                        blink 
+                          font(color="red") #{time} Hours
+          .row
+            .col-md-4
+              .well.well-lg 
+                div#pieT_div 
+              div(align="center")
+                div#chartT_div            
+            .col-md-4
+              .well.well-lg 
+                div#pie_div
+              div(align="center")
+                div#chartC_div
+            .col-md-4
+              .well.well-lg  
+                div#pieP_div
+              div(align="center")
+                div#chartP_div
+            .col-md-12
+                h2.sub-header #{org} Tickets for Selected Dates
+            .col-md-12
+              div(align="center")
+                div#chart_div
+            .col-md-12
+             // h1 #{name}'s Total for Month = $#{total}
+
+  script.
+    $(document).ready(function() {
+      $('[data-toggle=offcanvas]').click(function() {
+        $('.row-offcanvas').toggleClass('active');
+      });
+    });
+
+    $(function() {
+      var date = new Date(!{date});
+      var seven_date = new Date(!{seven_date});
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      var nday = seven_date.getDate();
+      var nmonth = seven_date.getMonth() + 1;
+      var nyear = seven_date.getFullYear();
+      console.log('TODAY '+date+' 7 DAYS '+seven_date);
+      $( "#from" ).datepicker({
+        showOn: "button",
+        buttonImage: "images/calendar.gif",
+        buttonImageOnly: true,
+        buttonText: "Select date"
+      });
+      $("#from").datepicker("setDate", nmonth+'/'+nday+'/'+nyear);
+      $("#from").datepicker("option","dateFormat", "MM dd yy");
+
+      $( "#to" ).datepicker({
+        showOn: "button",
+        buttonImage: "images/calendar.gif",
+        buttonImageOnly: true,
+        buttonText: "Select date"
+      });
+      $("#to").datepicker("setDate", month+'/'+day+'/'+year);
+      $("#to").datepicker("option","dateFormat", "MM dd yy");
+    });
+
+    function blink() {
+      var blinks = document.getElementsByTagName('blink');
+      for (var i = blinks.length - 1; i >= 0; i--) {
+        var s = blinks[i];
+        s.style.visibility = (s.style.visibility === 'visible') ? 'hidden' : 'visible';
+      }
+      window.setTimeout(blink, 1000);
+    }
+    if (document.addEventListener) document.addEventListener("DOMContentLoaded", blink, false);
+    else if (window.addEventListener) window.addEventListener("load", blink, false);
+    else if (window.attachEvent) window.attachEvent("onload", blink);
+    else window.onload = blink;
+    
+
+    
+
+    
+    
+   
+      
+
+      
+    
+      
+
