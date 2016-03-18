@@ -1,8 +1,8 @@
 doctype html
 html
   head
-  // script(src="https://www.google.com/jsapi")
-  script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
+  script(src="https://www.google.com/jsapi")
+  //script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
   script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
   link(rel='stylesheet', href='/stylesheets/style.css')
   link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous")
@@ -30,14 +30,23 @@ html
     console.log(orgs);
      
     // Load the Visualization API and the piechart package.
-    google.charts.load('current', {'packages':['table', 'corechart']});
-    google.charts.setOnLoadCallback(drawTable);
-    google.charts.setOnLoadCallback(drawPie);
-    google.charts.setOnLoadCallback(drawPieT);
-    google.charts.setOnLoadCallback(drawPieP);
-    google.charts.setOnLoadCallback(drawTableC);
-    google.charts.setOnLoadCallback(drawTableT);
-    google.charts.setOnLoadCallback(drawTableP);
+    //google.charts.load('current', {'packages':['table', 'corechart']});
+    google.load('visualization', '1', {'packages':['table','corechart']});
+    //google.charts.setOnLoadCallback(drawTable);
+    //google.charts.setOnLoadCallback(drawPie);
+    //google.charts.setOnLoadCallback(drawPieT);
+    //google.charts.setOnLoadCallback(drawPieP);
+    //google.charts.setOnLoadCallback(drawTableC);
+    //google.charts.setOnLoadCallback(drawTableT);
+    //google.charts.setOnLoadCallback(drawTableP);
+
+    google.setOnLoadCallback(drawTable);
+    google.setOnLoadCallback(drawPie);
+    google.setOnLoadCallback(drawPieT);
+    google.setOnLoadCallback(drawPieP);
+    google.setOnLoadCallback(drawTableC);
+    google.setOnLoadCallback(drawTableT);
+    google.setOnLoadCallback(drawTableP);
 
       
     function drawTable() {

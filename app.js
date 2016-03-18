@@ -63,7 +63,14 @@ function solveFormat(date) {
   if (typeof date === "string") {
     return null 
   } else { 
-    return moment(date).format('ddd MMM DD YYYY HH:MM:ss')
+    var zone = date.toString().slice(35,-1);
+    console.log ('THE ZONE: '+zone);
+    if (zone == 'EDT') {
+      date.setHours(date.getHours() - 4);
+    } else {
+      date.setHours(date.getHours() - 5);
+    }
+    return moment(date).format('ddd MMM DD YYYY HH:mm:ss')
   }
 }
 
@@ -201,12 +208,11 @@ var graphdata = function(org, date, seven_day, done) {
         divisor += 1;
        // console.log('THE DIFFERENCE: '+difference+' THE DIVISOR: '+divisor+' THE TICKET ID: '+results[i].id);
       } 
-
       //console.log("REQUESTED DATE: "+results[i].requested+" SOLVED DATE: "+results[i].solved); 
       graphData.rows[i] = {"c":[{"v":results[i].id,"f":null},{"v":results[i].subject,"f":null}
       ,{"v":results[i].type,"f":null},{"v":results[i].priority,"f":null},{"v":results[i].product,"f":null}
       ,{"v":results[i].customer,"f":null},{"v":results[i].category,"f":null}
-      ,{"v":new Date(results[i].requested), "f": moment(results[i].requested).format('ddd MMM DD YYYY HH:MM:ss')}
+      ,{"v":new Date(results[i].requested), "f": moment(results[i].requested).format('ddd MMM DD YYYY HH:mm:ss')}
       , {"v":new Date(results[i].solved), "f":solveFormat(results[i].solved)}, {"v":results[i].status,"f":null}]};
       if (results[i].category in categories) {
         categories[results[i].category] += 1;
