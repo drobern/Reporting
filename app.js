@@ -63,13 +63,6 @@ function solveFormat(date) {
   if (typeof date === "string") {
     return null 
   } else { 
-    var zone = date.toString().slice(35,-1);
-    console.log ('THE ZONE: '+zone);
-    if (zone == 'EDT') {
-      date.setHours(date.getHours() - 4);
-    } else {
-      date.setHours(date.getHours() - 5);
-    }
     return moment(date).format('ddd MMM DD YYYY HH:mm:ss')
   }
 }
@@ -206,7 +199,7 @@ var graphdata = function(org, date, seven_day, done) {
           results[i].solved.setHours(results[i].solved.getHours() - 4);
         } else {
           results[i].solved.setHours(results[i].solved.getHours() - 5);
-        }
+        } 
         var sdate = moment(results[i].solved).unix();
         var rdate = moment(results[i].requested).unix();
         difference = sdate - rdate;
