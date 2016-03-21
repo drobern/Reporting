@@ -201,6 +201,12 @@ var graphdata = function(org, date, seven_day, done) {
       } 
 
       if (results[i].status == "Solved" || results[i].status == "Closed") {
+        var zone = results[i].solved.toString().slice(35,-1);
+        if (zone == 'EDT') {
+          results[i].solved.setHours(results[i].solved.getHours() - 4);
+        } else {
+          results[i].solved.setHours(results[i].solved.getHours() - 5);
+        }
         var sdate = moment(results[i].solved).unix();
         var rdate = moment(results[i].requested).unix();
         difference = sdate - rdate;
